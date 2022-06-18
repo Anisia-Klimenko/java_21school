@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="68e2744d-5f95-46fc-bc98-db36cb04f19c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ex04/Program.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,51 +43,29 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="GitIgnore" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="Application.Program (4)">
+  <component name="RunManager" selected="Application.Program (1)">
     <configuration name="Program (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ex05.Program" />
+      <module name="day00" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ex05.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ex01.Program" />
-      <module name="day00" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ex01.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Program (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ex02.Program" />
-      <module name="day00" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ex02.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Program (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ex03.Program" />
-      <module name="day00" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ex03.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Program (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ex04.Program" />
       <module name="day00" />
       <extension name="coverage">
         <pattern>
@@ -98,24 +77,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Program" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ex00.Program" />
-      <module name="day00" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ex00.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Program (4)" />
-        <item itemvalue="Application.Program (3)" />
-        <item itemvalue="Application.Program (2)" />
         <item itemvalue="Application.Program (1)" />
         <item itemvalue="Application.Program" />
       </list>
@@ -132,11 +95,28 @@
       <workItem from="1655294991897" duration="4000" />
       <workItem from="1655295408268" duration="912000" />
       <workItem from="1655298984329" duration="2105000" />
-      <workItem from="1655367911941" duration="12900000" />
+      <workItem from="1655367911941" duration="13348000" />
+      <workItem from="1655448311726" duration="742000" />
+      <workItem from="1655449698290" duration="120000" />
+      <workItem from="1655449840824" duration="1785000" />
+      <workItem from="1655456256491" duration="20580000" />
+      <workItem from="1655554608220" duration="17000" />
+      <workItem from="1655554679387" duration="2376000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
