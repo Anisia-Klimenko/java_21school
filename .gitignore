@@ -1,2 +1,4 @@
 day*/.idea
 .DS_Store
+day*/*.xml
+day*/out
