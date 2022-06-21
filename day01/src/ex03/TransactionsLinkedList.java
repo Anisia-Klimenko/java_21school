@@ -26,10 +26,14 @@ public class TransactionsLinkedList implements TransactionsList{
         Node prev;
         Node next;
 
-        if (current.item.getId() == id) {
+        if (head.item.getId() == id) {
             head = head.next;
             head.prev = null;
-        } else if (current != tail) {
+        } else if (tail.item.getId() == id) {
+            tail = tail.prev;
+            tail.next = null;
+        }
+        else {
             while (current != tail) {
                 if (current.item.getId() == id) {
                     prev = current.prev;
@@ -41,11 +45,10 @@ public class TransactionsLinkedList implements TransactionsList{
 
                 current = current.next;
             }
-        } else if (current.item.getId() == id) {
-            tail = current.prev;
-            tail.next = null;
-        } else {
-            throw new TransactionNotFoundException("Transaction " + id + " not found");
+
+            if (current == tail) {
+                throw new TransactionNotFoundException("Transaction " + id + " not found");
+            }
         }
     }
 

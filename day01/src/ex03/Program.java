@@ -44,7 +44,7 @@ public class Program {
         System.out.println(trList.transactionToArray()[1].getTransferAmount());
         System.out.println(trList.transactionToArray()[2].getTransferAmount());
 
-        UUID id = trList.transactionToArray()[1].getId();
+        UUID id = trList.transactionToArray()[2].getId();
 
         trList.removeTransactionById(id);
 
