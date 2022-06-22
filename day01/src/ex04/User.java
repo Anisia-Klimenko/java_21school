@@ -1,19 +1,19 @@
 package ex04;
 
 public class User {
-    private int id;
+    private Integer id;
     private String name;
-    private int balance;
+    private Integer balance;
     private TransactionsList transactions;
 
-    public User(String name, int balance, TransactionsList transactions) {
+    public User(String name, Integer balance, TransactionsList transactions) {
         this.name = name;
         this.balance = balance;
         this.transactions = new TransactionsLinkedList();
         this.id = UserIdsGenerator.getInstance().generateId();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -21,7 +21,7 @@ public class User {
         return name;
     }
 
-    public int getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
@@ -29,7 +29,7 @@ public class User {
         return transactions;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(Integer balance) {
         if (balance > 0) {
             this.balance = balance;
         } else {

@@ -1,16 +1,16 @@
 package ex03;
 
 public class User {
-    private int id;
+    private Integer id;
     private String name;
-    private int balance;
+    private Integer balance;
     private TransactionsList transactions;
 
     public User() {
         this.id = UserIdsGenerator.getInstance().generateId();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -18,7 +18,7 @@ public class User {
         return name;
     }
 
-    public int getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
@@ -26,7 +26,7 @@ public class User {
         return transactions;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(Integer balance) {
         if (balance > 0) {
             this.balance = balance;
         } else {

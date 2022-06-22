@@ -54,7 +54,7 @@ public class TransactionsLinkedList implements TransactionsList{
 
     @Override
     public Transaction[] transactionToArray() {
-        int size = 0;
+        Integer size = 0;
         Node current = head;
 
         while (current != tail) {

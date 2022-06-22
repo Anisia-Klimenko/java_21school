@@ -24,11 +24,11 @@ public class TransactionsService implements TransactionServiceInterface{
         usersList.addUser(newUser);
     }
 
-    public int getBalance(int id) {
+    public Integer getBalance(Integer id) {
         return usersList.getUserById(id).getBalance();
     }
 
-    public void makeTransfer(int recipientId, int senderId, int amount) {
+    public void makeTransfer(Integer recipientId, Integer senderId, Integer amount) {
         User recipient = usersList.getUserById(recipientId);
         User sender = usersList.getUserById(senderId);
 
@@ -47,12 +47,12 @@ public class TransactionsService implements TransactionServiceInterface{
     }
 
     @Override
-    public Transaction[] getUserTransactions(int userId) {
+    public Transaction[] getUserTransactions(Integer userId) {
         return usersList.getUserById(userId).getTransactions().transactionToArray();
     }
 
     @Override
-    public void removeUserTransaction(int userId, UUID transactionId) {
+    public void removeUserTransaction(Integer userId, UUID transactionId) {
         if (unpairedTransactions.isInList(transactionId)) {
             unpairedTransactions.removeTransactionById(transactionId);
         } else {

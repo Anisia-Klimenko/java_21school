@@ -7,7 +7,7 @@ public class Transaction {
     private User recipient;
     private User sender;
     private String transferCategory;
-    private int transferAmount;
+    private Integer transferAmount;
 
     public UUID getId() {
         return id;
@@ -25,7 +25,7 @@ public class Transaction {
         return transferCategory;
     }
 
-    public int getTransferAmount() {
+    public Integer getTransferAmount() {
         return transferAmount;
     }
 
@@ -45,7 +45,7 @@ public class Transaction {
         this.transferCategory = transferCategory;
     }
 
-    public void setTransferAmount(int transferAmount) {
+    public void setTransferAmount(Integer transferAmount) {
         if ((transferCategory.equals("INCOME") && transferAmount > 0) ||
                 (transferCategory.equals("OUTCOME") && transferAmount < 0)) {
             this.transferAmount = transferAmount;

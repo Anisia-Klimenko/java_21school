@@ -1,11 +1,11 @@
 package ex00;
 
 public class User {
-    private int id;
+    private Integer id;
     private String name;
-    private int balance;
+    private Integer balance;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -13,11 +13,11 @@ public class User {
         return name;
     }
 
-    public int getBalance() {
+    public Integer getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(Integer balance) {
         if (balance > 0) {
             this.balance = balance;
         } else {
@@ -25,7 +25,7 @@ public class User {
         }
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

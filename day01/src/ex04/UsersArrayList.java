@@ -2,7 +2,7 @@ package ex04;
 
 public class UsersArrayList implements UsersList {
     User[] users = new User[10];
-    private int currLength = 0;
+    private Integer currLength = 0;
 
     public UsersArrayList() {
         this.users = users;
@@ -26,7 +26,7 @@ public class UsersArrayList implements UsersList {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(Integer id) {
         for (int i = 0; i < currLength; i++) {
             if (users[i].getId() == id) {
                 return users[i];
@@ -37,7 +37,7 @@ public class UsersArrayList implements UsersList {
     }
 
     @Override
-    public User getUserByIndex(int index) {
+    public User getUserByIndex(Integer index) {
         if (index >= 0 && index < currLength) {
             return users[index];
         }
@@ -46,8 +46,8 @@ public class UsersArrayList implements UsersList {
     }
 
     @Override
-    public int countUsers() {
-        int count = 0;
+    public Integer countUsers() {
+        Integer count = 0;
 
         for (int i = 0; i < users.length; i++) {
             if (users[i] != null) {

@@ -5,7 +5,7 @@ import java.util.UUID;
 public class TransactionsLinkedList implements TransactionsList {
     private Node head = null;
     private Node tail = null;
-    private int count = 0;
+    private Integer count = 0;
 
     @Override
     public void addTransaction(Transaction newTransaction) {
