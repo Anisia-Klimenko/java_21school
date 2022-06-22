@@ -1,4 +1,4 @@
-package ex04;
+package ex05;
 
 import java.util.UUID;
 
@@ -24,7 +24,7 @@ public class TransactionsLinkedList implements TransactionsList {
     }
 
     @Override
-    public void removeTransactionById(UUID id) {
+    public void removeTransactionById(UUID id) throws TransactionNotFoundException {
         Node current = head;
         Node prev;
         Node next;
@@ -32,9 +32,11 @@ public class TransactionsLinkedList implements TransactionsList {
         if (head.item.getId().equals(id)) {
             head = head.next;
             count--;
+            return;
         } else if (tail.item.getId().equals(id)) {
             tail = tail.prev;
             count--;
+            return;
         } else {
             while (current != tail) {
                 if (current.item.getId().equals(id)) {
@@ -43,15 +45,13 @@ public class TransactionsLinkedList implements TransactionsList {
                     prev.next = next;
                     next.prev = prev;
                     count--;
-                    break;
+                    return;
                 }
 
                 current = current.next;
             }
 
-            if (current == tail) {
-                throw new TransactionNotFoundException("Transaction " + id + " not found");
-            }
+            throw new TransactionNotFoundException("Transaction id = " + id + " not found");
         }
     }
 

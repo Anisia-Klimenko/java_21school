@@ -1,9 +1,8 @@
-package ex04;
+package ex05;
 
-import java.util.Arrays;
 import java.util.UUID;
 
-public class TransactionsService implements TransactionServiceInterface{
+public class TransactionsService implements TransactionServiceInterface {
     private UsersList usersList;
 
     private TransactionsLinkedList unpairedTransactions = new TransactionsLinkedList();
@@ -33,11 +32,14 @@ public class TransactionsService implements TransactionServiceInterface{
         User sender = usersList.getUserById(senderId);
 
         if (amount > sender.getBalance()) {
-            throw new IllegalTransactionException("User " + senderId + " doesn't have enough money");
+            throw new IllegalTransactionException("User " + sender.getName() + " (id = "+ senderId
+                    + ") doesn't have enough money");
         }
 
-        Transaction out = new Transaction(new UUID(amount, 1), recipient, sender, "OUTCOME", -amount);
-        Transaction in = new Transaction(new UUID(amount, 1), sender, recipient, "INCOME", amount);
+        UUID trId = UUID.randomUUID();
+
+        Transaction out = new Transaction(trId, recipient, sender, "OUTCOME", -amount);
+        Transaction in = new Transaction(trId, sender, recipient, "INCOME", amount);
 
         recipient.getTransactions().addTransaction(in);
         sender.getTransactions().addTransaction(out);
@@ -47,7 +49,7 @@ public class TransactionsService implements TransactionServiceInterface{
     }
 
     @Override
-    public Transaction[] getUserTransactions(Integer userId) {
+    public Transaction[] getUserTransactions(Integer userId) throws TransactionNotFoundException {
         return usersList.getUserById(userId).getTransactions().transactionToArray();
     }
 
@@ -56,7 +58,11 @@ public class TransactionsService implements TransactionServiceInterface{
         if (unpairedTransactions.isInList(transactionId)) {
             unpairedTransactions.removeTransactionById(transactionId);
         } else {
-            unpairedTransactions.addTransaction(usersList.getUserById(userId).getTransactions().getTransactionById(transactionId));
+            if (usersList.getUserById(userId).getTransactions().getTransactionById(transactionId) != null) {
+                unpairedTransactions.addTransaction(usersList.getUserById(userId).getTransactions().getTransactionById(transactionId));
+            } else {
+                throw new TransactionNotFoundException("Transaction id = " + transactionId + " not found");
+            }
         }
 
         usersList.getUserById(userId).getTransactions().removeTransactionById(transactionId);
