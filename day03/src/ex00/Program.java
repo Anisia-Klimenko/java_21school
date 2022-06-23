@@ -2,19 +2,14 @@ package ex00;
 
 public class Program {
     public static void main(String[] args) {
-        int count = 20;
+        int count = 0;
 
-        if (args[0].length() != 0) {
-            System.err.println("Wrong number of arguments");
-            System.exit(-1);
+        if (args[0].length() == 1 && args[0].startsWith("--count=")) {
+            count = Integer.parseInt(args[0].substring(8));
+        } else {
+            System.out.println("Should be one parameter with number of threads: --count=_");
+            System.exit(0);
         }
-
-        if (!args[0].startsWith("--count=")) {
-            System.err.println("Wrong parameter, should be: --count=_");
-            System.exit(-1);
-        }
-
-        count = Integer.parseInt(args[0].substring(8));
 
         Egg egg = new Egg(count);
         Hen hen = new Hen(count);
