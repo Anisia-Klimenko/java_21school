@@ -3,19 +3,21 @@ package ex02;
 import java.util.ArrayList;
 
 public class CountThread extends Thread implements Runnable{
+    private int id;
     private int start;
     private int end;
     private ArrayList<Integer> arrayList;
     private static int sumOfThreads = 0;
 
-    public CountThread(int start, int end, ArrayList<Integer> arrayList) {
+    public CountThread(int id, int start, int end, ArrayList<Integer> arrayList) {
+        this.id = id;
         this.start = start;
         this.end = end;
         this.arrayList = arrayList;
     }
 
-    public static synchronized void showSum(int startElem, int endElem, int sum) {
-        System.out.println("Thread " + Thread.currentThread().getName() + ": from "
+    public static synchronized void showSum(int id, int startElem, int endElem, int sum) {
+        System.out.println("Thread " + id + ": from "
                 + startElem + " to " + endElem + " sum is " + sum);
         sumOfThreads += sum;
     }
@@ -32,7 +34,7 @@ public class CountThread extends Thread implements Runnable{
             sum += arrayList.get(i);
         }
 
-        showSum(arrayList.get(start), arrayList.get(end), sum);
+        showSum(id, arrayList.get(start), arrayList.get(end), sum);
     }
 
 }

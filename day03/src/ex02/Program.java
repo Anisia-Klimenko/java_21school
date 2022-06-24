@@ -58,9 +58,9 @@ public class Program {
 
         for (int i = 0; i < threadCount; i++) {
             if (i + 1 == threadCount) {
-                threadList.add(new CountThread(i * sizeOfThread, arraySize - 1, array));
+                threadList.add(new CountThread(i + 1, i * sizeOfThread, arraySize - 1, array));
             } else {
-                threadList.add(new CountThread(i * sizeOfThread, (i + 1) * sizeOfThread - 1, array));
+                threadList.add(new CountThread(i + 1, i * sizeOfThread, (i + 1) * sizeOfThread - 1, array));
             }
         }
 
