@@ -34,7 +34,7 @@ public class CountThread extends Thread implements Runnable{
             sum += arrayList.get(i);
         }
 
-        showSum(id, arrayList.get(start), arrayList.get(end), sum);
+        showSum(id, start, end, sum);
     }
 
 }

@@ -1,50 +1,79 @@
 package ex00;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Objects;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 public class Program {
-//    public static final String PROCESSED = "PROCESSED";
-//    public static final String UNDEFINED = "UNDEFINED";
-//    public static final String SIGNATURES = "/Users/acristin/java_21school/day02/src/ex00/signatures.txt";
+    public static final String PROCESSED = "PROCESSED";
+    public static final String UNDEFINED = "UNDEFINED";
 
     public static void main(String[] args) {
-        System.out.println("here");
-//        Map<String, String> signatures = new HashMap<>();
-//        List<Character> buffer = new ArrayList<Character>();
-//
-        try {
-            System.out.println("here");
-            FileInputStream inputStream = new FileInputStream(new File("ex00/signatures.txt"));
-            System.out.println("here");
+        Map<String, String> signatures = new HashMap<>();
 
-////            int i = 0;
-////            String tmp = null;
-////            while ((i = inputStream.read()) != -1) {
-////                System.out.println("here");
-////                if ((char) i == '\n') {
-////                    String[] split = buffer.toString().split(",");
-////                    signatures.put(split[0].trim(), split[1].trim());
-////                    buffer.clear();
-////                }
-////                buffer.add(buffer.size(), (char) i);
-////            }
-////
-////            for (String name: signatures.keySet()) {
-////                String key = name.toString();
-////                String value = signatures.get(name).toString();
-////                System.out.println(key + " " + value);
-//            }
-        } catch (IOException e) {
+        try {
+            FileInputStream inputStream = new FileInputStream(new File("ex00/signatures.txt"));
+
+            int i;
+            StringBuilder buffer = new StringBuilder();
+            
+            while ((i = inputStream.read()) != -1) {
+                if ((char) i == '\n') {
+                    String[] split = buffer.toString().split(", ");
+                    signatures.put(split[0], split[1]);
+                    buffer.setLength(0);
+                } else {
+                    buffer.append((char) i);
+                }
+            }
+
+            inputStream.close();
+        } catch (Exception e) {
             e.printStackTrace();
-//            e.getMessage();
+        }
+
+        StringBuilder bytes = new StringBuilder();
+
+        try {
+            Scanner scanner = new Scanner(System.in);
+            boolean isProcessed = false;
+            FileOutputStream out = new FileOutputStream(new File("ex00/result.txt"));
+
+            System.out.print(" -> ");
+
+            String line = scanner.next();
+
+            while (!line.equals("42")) {
+                FileInputStream test = new FileInputStream(new File(line));
+
+                for (int i = 0; i < 8; i++) {
+                    bytes.append(Integer.toHexString(test.read()).toUpperCase()).append(" ");
+                }
+
+                for (Map.Entry<String, String> elem : signatures.entrySet()) {
+                    if (bytes.toString().startsWith(elem.getValue())) {
+                        for (int i = 0; i < elem.getKey().length(); i++) {
+                            out.write((int) elem.getKey().charAt(i));
+                        }
+
+                        out.write((int) '\n');
+                        System.out.println(PROCESSED);
+                        isProcessed = true;
+                    }
+                }
+
+                if (!isProcessed) {
+                    System.out.println(UNDEFINED);
+                }
+
+                bytes.setLength(0);
+                System.out.print(" -> ");
+                line = scanner.next();
+                test.close();
+            }
+
+            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
