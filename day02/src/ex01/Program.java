@@ -2,7 +2,6 @@ package ex01;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.TreeSet;
 
 public class Program {
@@ -73,11 +72,13 @@ public class Program {
 
         for (String elem : DICTIONARY) {
             count = 0;
+
             for (String w : words) {
                 if (elem.equals(w)) {
                     count++;
                 }
             }
+
             frequencyArray[index] = count;
             index++;
         }

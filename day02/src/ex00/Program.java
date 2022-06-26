@@ -25,6 +25,10 @@ public class Program {
                     buffer.append((char) i);
                 }
             }
+            if (buffer.length() != 0) {
+                String[] split = buffer.toString().split(", ");
+                signatures.put(split[0], split[1]);
+            }
 
             inputStream.close();
         } catch (Exception e) {
