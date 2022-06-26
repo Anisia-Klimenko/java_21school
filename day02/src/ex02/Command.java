@@ -1,11 +1,14 @@
 package ex02;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Command {
     private Path currentDir;
@@ -27,7 +30,19 @@ public class Command {
         }
     }
 
-    public void mv() {
+    public void mv(String src, String dest) {
+        File srcFile = new File(src);
+        File destFile = new File(dest);
 
+        try {
+            if (destFile.isDirectory()) {
+                destFile = new File(dest + "/" + srcFile.getName());
+                Files.move(srcFile.toPath(), destFile.toPath(), REPLACE_EXISTING);
+            } else {
+                Files.move(srcFile.toPath(), destFile.toPath(), REPLACE_EXISTING);
+            }
+        } catch (IOException e) {
+            System.out.println("No such file " + srcFile.toString());
+        }
     }
 }

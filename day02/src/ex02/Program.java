@@ -21,21 +21,27 @@ public class Program {
         System.out.print(currentDir + "\n -> ");
         String[] line = scanner.nextLine().split("\\s+");
 
+        Command command = new Command(currentDir);
+
         while (!line[0].equals("42") && !line[0].isEmpty()) {
-            Command command = new Command(currentDir);
-            switch (line[0]) {
-                case "ls":
-                    command.ls();
-                    break;
-                case "mv":
-                    command.mv();
-                    break;
-                case "exit":
-                    scanner.close();
-                    System.exit(0);
-                default:
-                    System.out.println("Command not found, \"exit\" to exit program");
-                    break;
+            try {
+                switch (line[0]) {
+                    case "ls":
+                        command.ls();
+                        break;
+                    case "mv":
+                        command.mv(line[1], line[2]);
+                        break;
+                    case "exit":
+                        scanner.close();
+                        System.exit(0);
+                    default:
+                        System.out.println("Command not found, \"exit\" or \"Enter\" to exit program");
+                        break;
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             System.out.print(" -> ");
