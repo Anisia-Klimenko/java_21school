@@ -18,9 +18,10 @@ public class Program {
 
         Path currentDir = Paths.get(args[0].substring(17));
         Scanner scanner = new Scanner(System.in);
-        System.out.print(currentDir + "\n -> ");
-        String[] line = scanner.nextLine().split("\\s+");
 
+        System.out.print(currentDir + "\n -> ");
+
+        String[] line = scanner.nextLine().split("\\s+");
         Command command = new Command(currentDir);
 
         while (!line[0].equals("42") && !line[0].isEmpty()) {
@@ -31,6 +32,9 @@ public class Program {
                         break;
                     case "mv":
                         command.mv(line[1], line[2]);
+                        break;
+                    case "cd":
+                        command.cd(Paths.get(line[1]));
                         break;
                     case "exit":
                         scanner.close();
