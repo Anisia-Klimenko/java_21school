@@ -15,18 +15,6 @@ import java.util.Queue;
 public class DownloadThread extends Thread implements Runnable{
     private Queue<String> urls;
 
-//    public DownloadThread(Queue<String> urls) {
-//        this.urls = urls;
-//    }
-
-//    public void setUrls(Queue<String> urls) {
-//        this.urls = urls;
-//    }
-
-//    public synchronized String getURL() {
-//        return urls.poll();
-//    }
-
     public synchronized void printMessage(String message) {
         System.out.println(message);
     }
@@ -34,7 +22,7 @@ public class DownloadThread extends Thread implements Runnable{
     public void downloadFile(String line) {
         try {
             String[] split = line.split("\\s+");
-            Integer number = Integer.parseInt(split[0]);
+            int number = Integer.parseInt(split[0]);
             Path file = Paths.get(split[1]);
             InputStream url = new URL(split[1]).openStream();
 

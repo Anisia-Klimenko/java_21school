@@ -5,10 +5,16 @@ rm -rf target
 mkdir target target/resources
 
 #change class files directory
-javac java/edu/school21/printer/*/*.java -d target
+javac `find . -name "*.java"` -d target
 
 #copy sources
-cp resources ../target/resources
+cp -R src/resources target
+
+#create jar-file
+jar -cfm target/images-to-chars-printer.jar src/manifest.txt -C target .
+
+#make jar-file executable
+chmod 777 target/images-to-chars-printer.jar
 
 #run program
-java -classpath target edu.school21.printer.app.Program . 0 test.bmp
+java -classpath target edu.school21.printer.app.Program . 0

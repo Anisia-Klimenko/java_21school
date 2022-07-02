@@ -10,7 +10,6 @@ public class Program {
     public static Queue<String> urls = new LinkedList<>();
 
     public static synchronized String getUrl() {
-
         return urls.poll();
     }
 
@@ -27,8 +26,6 @@ public class Program {
             threadsCount = Integer.parseInt(args[0].substring(15));
         }
 
-//        Queue<String> urls = new LinkedList<>();
-
         try {
             BufferedReader buffer = new BufferedReader(new FileReader("ex03/files_urls.txt"));
             String line;
@@ -40,9 +37,6 @@ public class Program {
             }
 
             buffer.close();
-
-//            DownloadThread thread = new DownloadThread(urls);
-//            thread.setUrls(urls);
 
             for (int i = 0; i < threadsCount; i++) {
                 new DownloadThread().start();

@@ -1,16 +1,19 @@
 package edu.school21.printer.logic;
 
+import edu.school21.printer.app.Program;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
 
 public class ImageToChar {
     private char white;
     private char black;
     private char[][] charArray;
 
-    public ImageToChar(char white, char black, String file) {
+    public ImageToChar(char white, char black, URL file) {
         this.white = white;
         this.black = black;
         this.charArray = setCharArray(file, white, black);
@@ -20,9 +23,9 @@ public class ImageToChar {
         return charArray;
     }
 
-    public char[][] setCharArray(String file, char white, char black) {
+    public char[][] setCharArray(URL file, char white, char black) {
         try {
-            BufferedImage buffer = ImageIO.read(new File(file));
+            BufferedImage buffer = ImageIO.read(ImageToChar.class.getResource("/resources/image.bmp"));
             char[][] array = new char[buffer.getWidth()][buffer.getHeight()];
 
             for (int y = 0; y < buffer.getHeight(); y++) {
