@@ -13,12 +13,4 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
-<!--    <dependencies>-->
-<!--        <dependency>-->
-<!--            <groupId>com.oracle.database.jdbc</groupId>-->
-<!--            <artifactId>ojdbc11-production</artifactId>-->
-<!--            <version>21.5.0.0</version>-->
-<!--        </dependency>-->
-<!--    </dependencies>-->
-
 </project>
