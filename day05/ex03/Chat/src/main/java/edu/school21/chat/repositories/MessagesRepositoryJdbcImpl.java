@@ -41,8 +41,12 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository{
                 resultUser.getString("password"), null, null);
         Chatroom room = new Chatroom(resultRoom.getLong("id"), resultRoom.getString("name"),
                 null, null);
-        optionalMessage = Optional.of(new Message(resultMess.getLong("id"), user, room, resultMess.getString("text"),
+        if (resultMess.getTimestamp("date") == null) {
+            optionalMessage = Optional.of(new Message(resultMess.getLong("id"), user, room, resultMess.getString("text"), null));
+        } else {
+            optionalMessage = Optional.of(new Message(resultMess.getLong("id"), user, room, resultMess.getString("text"),
                 resultMess.getTimestamp("date").toLocalDateTime()));
+        }
 
         return optionalMessage;
     }
@@ -56,7 +60,7 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository{
             statement.setLong(1, message.getAuthor().getId());
             statement.setLong(2, message.getRoom().getId());
             statement.setString(3, message.getText());
-            statement.setTimestamp(4, Timestamp.valueOf(message.getDate()));
+            statement.setTimestamp(4, Timestamp.valueOf(String.valueOf(message.getDate())));
 
             statement.execute();
 
@@ -68,5 +72,37 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository{
             throw new NotSavedSubEntityException("Can't save message");
         }
 
+    }
+
+    @Override
+    public void update(Message message) {
+        String query = "UPDATE chat.message SET author=?, chatroom=?, text=?, date=? WHERE id=?";
+
+        try (Connection conn = ds.getConnection();
+            PreparedStatement statement = conn.prepareStatement(query);) {
+            if (message.getAuthor().getId() == null) {
+                statement.setNull(1, Types.INTEGER);
+            } else {
+                statement.setLong(1, message.getAuthor().getId());
+            }
+            if (message.getRoom().getId() == null) {
+                statement.setNull(2, Types.INTEGER);
+            } else {
+                statement.setLong(2, message.getRoom().getId());
+            }
+            statement.setString(3, message.getText());
+            if (message.getDate() == null) {
+                statement.setNull(4, Types.DATE);
+            } else {
+                statement.setTimestamp(4, Timestamp.valueOf(message.getDate()));
+            }
+            statement.setLong(5, message.getId());
+
+            statement.execute();
+
+            System.out.println("Successfully updated!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

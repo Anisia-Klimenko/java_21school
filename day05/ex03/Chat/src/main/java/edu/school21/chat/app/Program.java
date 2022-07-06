@@ -1,14 +1,13 @@
 package edu.school21.chat.app;
 
 import com.zaxxer.hikari.HikariDataSource;
-import edu.school21.chat.models.Chatroom;
 import edu.school21.chat.models.Message;
-import edu.school21.chat.models.User;
 import edu.school21.chat.repositories.MessagesRepository;
 import edu.school21.chat.repositories.MessagesRepositoryJdbcImpl;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Optional;
 
 public class Program {
     public static void main(String[] args) {
@@ -19,12 +18,20 @@ public class Program {
 
         MessagesRepository repository = new MessagesRepositoryJdbcImpl(ds);
 
-        User user = new User(1L, "Mark", "123123", new ArrayList(), new ArrayList());
-        Chatroom room = new Chatroom(1L, "chat1", user, new ArrayList());
-        Message message = new Message(null, user, room, "Test text", LocalDateTime.now());
+        Optional<Message> messageOptional = null;
+        try {
+            messageOptional = repository.findById(1L);
 
-        repository.save(message);
-        System.out.print("Success!\nNew message id=");
-        System.out.println(message.getId());
+            if (messageOptional.isPresent()) {
+                Message message = messageOptional.get();
+
+                message.setText(null);
+                message.setDate(LocalDateTime.now());
+
+                repository.update(message);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

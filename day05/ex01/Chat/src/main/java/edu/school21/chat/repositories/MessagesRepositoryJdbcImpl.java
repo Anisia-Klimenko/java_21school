@@ -47,6 +47,8 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository{
         optionalMessage = Optional.of(new Message(resultMess.getLong("id"), user, room, resultMess.getString("text"),
                 resultMess.getTimestamp("date").toLocalDateTime()));
 
+        conn.close();
+
         return optionalMessage;
     }
 }
