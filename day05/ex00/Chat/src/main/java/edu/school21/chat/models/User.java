@@ -39,8 +39,8 @@ public class User {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", createdRooms=" + createdRooms.toString() +
-                ", chatRooms=" + chatRooms.toString() +
+                ", createdRooms=" + createdRooms +
+                ", chatRooms=" + chatRooms +
                 '}';
     }
 }

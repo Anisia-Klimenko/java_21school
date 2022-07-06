@@ -34,7 +34,7 @@ public class Chatroom {
         return "Chatroom{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", owner='" + owner.toString() + '\'' +
+                ", owner='" + owner + '\'' +
                 ", messages=" + messages +
                 '}';
     }

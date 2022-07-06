@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private Integer id;
+    private Long id;
     private String login;
     private String password;
     private List<Chatroom> createdRooms;
     private List<Chatroom> chatRooms;
 
-    public User(Integer id, String login, String password, List<Chatroom> createdRooms, List<Chatroom> chatRooms) {
+    public User(Long id, String login, String password, List<Chatroom> createdRooms, List<Chatroom> chatRooms) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -39,8 +39,8 @@ public class User {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", createdRooms=" + createdRooms.toString() +
-                ", chatRooms=" + chatRooms.toString() +
+                ", createdRooms=" + createdRooms +
+                ", chatRooms=" + chatRooms +
                 '}';
     }
 }

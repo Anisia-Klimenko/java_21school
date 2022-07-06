@@ -37,7 +37,7 @@ public class Message {
         return "Message{" +
                 "id=" + id +
                 ", author=" + author +
-                ", room=" + room.toString() +
+                ", room=" + room +
                 ", text='" + text + '\'' +
                 ", date=" + date +
                 '}';
