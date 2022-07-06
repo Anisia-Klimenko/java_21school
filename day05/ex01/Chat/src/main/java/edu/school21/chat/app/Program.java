@@ -19,7 +19,7 @@ public class Program {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a message ID\n -> ");
         try {
-            System.out.println(repository.findById(scanner.nextLong()));
+            System.out.println(repository.findById(scanner.nextLong()).get());
         } catch (SQLException e) {
             e.printStackTrace();
         }

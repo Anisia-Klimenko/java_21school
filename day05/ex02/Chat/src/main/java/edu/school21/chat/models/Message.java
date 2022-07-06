@@ -18,6 +18,30 @@ public class Message {
         this.date = date;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public Chatroom getRoom() {
+        return room;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
