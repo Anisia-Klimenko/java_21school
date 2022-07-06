@@ -28,7 +28,7 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
         while (result.next()) {
             list.add(new Product(result.getLong("id"), result.getString("name"), result.getFloat("price")));
         }
-        
+
         return list;
     }
 
