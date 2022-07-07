@@ -18,7 +18,6 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
     @Override
     public List<Product> findAll() throws SQLException {
         List<Product> list = new ArrayList<>();
-        System.out.println("here");
 
         Connection connection = ds.getConnection();
 

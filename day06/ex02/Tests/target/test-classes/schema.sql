@@ -1,5 +1,5 @@
 create table product (
-    id      int identity primary key ,
+    id      int primary key not null,
     name    varchar(50) not null ,
-    price   float
+    price   int not null
 );
