@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProductRepositoryJdbcImpl implements ProductRepository{
-    private DataSource ds;
+    private final DataSource ds;
 
     public ProductRepositoryJdbcImpl(DataSource ds) {
         this.ds = ds;
@@ -18,6 +18,7 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
     @Override
     public List<Product> findAll() throws SQLException {
         List<Product> list = new ArrayList<>();
+        System.out.println("here");
 
         Connection connection = ds.getConnection();
 
@@ -26,8 +27,14 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
 
         ResultSet result = statement.executeQuery(query);
         while (result.next()) {
-            list.add(new Product(result.getLong("id"), result.getString("name"), result.getFloat("price")));
+            list.add(new Product(
+                    result.getLong("id"),
+                    result.getString("name"),
+                    result.getFloat("price")));
         }
+
+        statement.close();
+        connection.close();
 
         return list;
     }
@@ -42,9 +49,13 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
         Statement statement = connection.createStatement();
 
         ResultSet result = statement.executeQuery(query);
-        result.next();
+        if (!result.next())
+            throw new RuntimeException("Object not found");
 
         optionalProduct = Optional.of(new Product(result.getLong("id"), result.getString("name"), result.getFloat("price")));
+
+        statement.close();
+        connection.close();
 
         return optionalProduct;
     }
@@ -81,8 +92,6 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
             statement.setLong(3, product.getId());
 
             statement.execute();
-
-//            System.out.println("Successfully updated!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -98,8 +107,6 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
             statement.setLong(1, id);
 
             statement.execute();
-
-//            System.out.println("Successfully deleted!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
