@@ -1,5 +1,7 @@
+drop table if exists product;
+
 create table product (
-    id      int primary key not null,
+    id      bigint primary key identity,
     name    varchar(50) not null ,
-    price   int not null
+    price   decimal(10,2)
 );

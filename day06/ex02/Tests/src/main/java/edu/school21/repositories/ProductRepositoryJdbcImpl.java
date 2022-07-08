@@ -60,54 +60,46 @@ public class ProductRepositoryJdbcImpl implements ProductRepository{
     }
 
     @Override
-    public void save(Product product) {
+    public void save(Product product) throws SQLException {
         String query = "INSERT INTO product (name, price) VALUES (?, ?);";
 
-        try (Connection conn = ds.getConnection();
-             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);){
-            statement.setString(2, product.getName());
-            statement.setFloat(3, product.getPrice());
+        Connection conn = ds.getConnection();
+        PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, product.getName());
+        statement.setDouble(2, product.getPrice());
 
-            statement.execute();
+        statement.execute();
 
-            ResultSet id = statement.getGeneratedKeys();
-            id.next();
+        ResultSet id = statement.getGeneratedKeys();
+        id.next();
 
-            product.setId(id.getLong(1));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        product.setId(id.getLong(1));
     }
 
     @Override
-    public void update(Product product) {
+    public void update(Product product) throws SQLException {
         String query = "UPDATE product SET name=?, price=? WHERE id=?";
 
-        try (Connection conn = ds.getConnection();
-             PreparedStatement statement = conn.prepareStatement(query);) {
+        Connection conn = ds.getConnection();
+        PreparedStatement statement = conn.prepareStatement(query);
 
-            statement.setString(1, product.getName());
-            statement.setFloat(2, product.getPrice());
-            statement.setLong(3, product.getId());
+        statement.setString(1, product.getName());
+        statement.setDouble(2, product.getPrice());
+        statement.setLong(3, product.getId());
 
-            statement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        statement.execute();
+
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws SQLException {
         String query = "DELETE FROM product WHERE id=?";
 
-        try (Connection conn = ds.getConnection();
-             PreparedStatement statement = conn.prepareStatement(query);) {
+        Connection conn = ds.getConnection();
+        PreparedStatement statement = conn.prepareStatement(query);
 
-            statement.setLong(1, id);
+        statement.setLong(1, id);
 
-            statement.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        statement.execute();
     }
 }
