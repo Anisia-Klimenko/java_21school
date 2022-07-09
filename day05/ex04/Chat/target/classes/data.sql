@@ -15,3 +15,4 @@ insert into chat.message (author, chatroom, text, date) values (1, 2, 'asdfg', t
 insert into chat.message (author, chatroom, text, date) values (2, 1, 'zxcvb', to_timestamp(1388534400+random()*63071999));
 insert into chat.message (author, chatroom, text, date) values (2, 3, 'poiuy', to_timestamp(1388534400+random()*63071999));
 insert into chat.message (author, chatroom, text, date) values (4, 4, 'lkjhg', to_timestamp(1388534400+random()*63071999));
+insert into chat.message (author, chatroom, text, date) values (4, 4, 'qweqq', to_timestamp(1388534400+random()*63071999));

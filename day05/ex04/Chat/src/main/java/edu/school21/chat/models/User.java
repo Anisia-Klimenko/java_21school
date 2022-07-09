@@ -18,6 +18,34 @@ public class User {
         this.chatRooms = chatRooms;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Chatroom> getCreatedRooms() {
+        return createdRooms;
+    }
+
+    public void setCreatedRooms(List<Chatroom> createdRooms) {
+        this.createdRooms = createdRooms;
+    }
+
+    public List<Chatroom> getChatRooms() {
+        return chatRooms;
+    }
+
+    public void setChatRooms(List<Chatroom> chatRooms) {
+        this.chatRooms = chatRooms;
+    }
+
     public Long getId() {
         return id;
     }
