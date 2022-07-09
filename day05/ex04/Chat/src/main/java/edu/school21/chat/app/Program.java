@@ -15,7 +15,7 @@ public class Program {
         ds.setPassword("postgres");
 
         UserRepository repository = new UserRepositoryJdbcImpl(ds);
-        List<User> users = repository.findAll(0, 0);
+        List<User> users = repository.findAll(0, 3);
 
         for (User u : users) {
             System.out.println(u.toString());

@@ -60,7 +60,7 @@ public class UserRepositoryJdbcImpl implements UserRepository{
             HashSet<Chatroom> createdRooms = new HashSet<>();
             HashSet<Chatroom> activeRooms = new HashSet<>();
             Long currentUserId = 0L;
-            boolean ifNextUser = false;
+            boolean ifNextUser;
             User newUser = null;
 
             while (result.next()) {
@@ -74,31 +74,35 @@ public class UserRepositoryJdbcImpl implements UserRepository{
 
                 currentUserId = result.getLong("user_id");
 
-
                 if (ifNextUser) {
                     newUser = new User(currentUserId, result.getString("login"), result.getString("password"), null, null);
                     createdRooms.clear();
                     activeRooms.clear();
                 }
 
-                createdRooms.add(new Chatroom(
-                        result.getLong("created_id"),
-                        result.getString("created_name"),
-                        new User(result.getLong("user_id"),
-                                result.getString("login"),
-                                result.getString("password"),
-                                null,
-                                null),
-                        null));
-                activeRooms.add(new Chatroom(
-                        result.getLong("active_id"),
-                        result.getString("active_name"),
-                        new User(result.getLong("user_id"),
-                                result.getString("login"),
-                                result.getString("password"),
-                                null,
-                                null),
-                        null));
+                if (result.getString("created_name") != null) {
+                    createdRooms.add(new Chatroom(
+                            result.getLong("created_id"),
+                            result.getString("created_name"),
+                            new User(result.getLong("user_id"),
+                                    result.getString("login"),
+                                    result.getString("password"),
+                                    null,
+                                    null),
+                            null));
+                }
+
+                if (result.getString("active_name") != null) {
+                    activeRooms.add(new Chatroom(
+                            result.getLong("active_id"),
+                            result.getString("active_name"),
+                            new User(result.getLong("user_id"),
+                                    result.getString("login"),
+                                    result.getString("password"),
+                                    null,
+                                    null),
+                            null));
+                }
             }
             newUser.setCreatedRooms(createdRooms.size() > 0 ? new ArrayList<>(createdRooms) : null);
             newUser.setChatRooms(activeRooms.size() > 0 ? new ArrayList<>(activeRooms) : null);
@@ -106,6 +110,7 @@ public class UserRepositoryJdbcImpl implements UserRepository{
         } catch (SQLException e) {
             throw new NotSavedSubEntityException("Can't get users");
         }
-        return userList;
+
+        return userList.subList(Math.min(page * size, userList.size()), Math.min((page + 1) * size, userList.size()));
     }
 }
