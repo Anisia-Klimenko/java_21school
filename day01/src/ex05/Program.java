@@ -4,7 +4,12 @@ import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-        boolean isDev = true;
+        boolean isDev = false;
+
+        if (args.length != 1) {
+            System.err.println("Specify a launch mode (dev/production): --profile=_");
+            System.exit(-1);
+        }
 
         if (args[0].equals("--profile=dev")) {
             isDev = true;
@@ -12,7 +17,7 @@ public class Program {
 
         Menu menu = new Menu();
         Scanner scanner = new Scanner(System.in);
-        Integer elem = 0;
+        Integer elem;
 
         System.out.println(" ");
 

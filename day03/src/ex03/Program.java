@@ -1,5 +1,3 @@
-package ex03;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,7 +25,7 @@ public class Program {
         }
 
         try {
-            BufferedReader buffer = new BufferedReader(new FileReader("ex03/files_urls.txt"));
+            BufferedReader buffer = new BufferedReader(new FileReader("files_urls.txt"));
             String line;
 
             while ((line = buffer.readLine()) != null) {

@@ -6,6 +6,13 @@ public class User {
     private Integer balance;
     private TransactionsList transactions;
 
+    public User(String name, Integer balance, TransactionsList transactions) {
+        this.id = UserIdsGenerator.getInstance().generateId();
+        this.name = name;
+        this.balance = balance;
+        this.transactions = transactions;
+    }
+
     public User() {
         this.id = UserIdsGenerator.getInstance().generateId();
     }

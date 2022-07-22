@@ -23,7 +23,6 @@ public class Program {
     }
 
     public void run() {
-//        ImageToChar imageToChar = new ImageToChar();
         ImageToChar.printCharArray(Program.class.getResource("/resources/image.bmp"),
                 white.toUpperCase(), black.toUpperCase());
     }

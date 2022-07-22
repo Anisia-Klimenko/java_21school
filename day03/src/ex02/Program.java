@@ -1,5 +1,3 @@
-package ex02;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,8 +18,8 @@ public class Program {
     public static int findSum(ArrayList<Integer> array) {
         int sum = 0;
 
-        for (int i = 0; i < array.size(); i++) {
-            sum += array.get(i);
+        for (Integer integer : array) {
+            sum += integer;
         }
         return sum;
     }
@@ -41,6 +39,14 @@ public class Program {
         } catch (NullPointerException e) {
             System.err.println("Wrong arguments");
             System.exit(-1);
+        }
+
+        if (arraySize > 2000000) {
+            arraySize = 2000000;
+        }
+
+        if (threadsCount > arraySize) {
+            threadsCount = arraySize;
         }
 
         ArrayList<Integer> array = new ArrayList<Integer>(arraySize);

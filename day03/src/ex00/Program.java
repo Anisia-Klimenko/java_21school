@@ -1,10 +1,8 @@
-package ex00;
-
 public class Program {
     public static void main(String[] args) {
         int count = 0;
 
-        if (args[0].length() == 1 && args[0].startsWith("--count=")) {
+        if (args.length == 1 && args[0].startsWith("--count=")) {
             count = Integer.parseInt(args[0].substring(8));
         } else {
             System.out.println("Should be one parameter with number of threads: --count=_");

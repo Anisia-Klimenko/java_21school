@@ -1,5 +1,3 @@
-package ex00;
-
 public class Hen extends Thread implements Runnable{
     private int count;
 

@@ -18,13 +18,14 @@ public class UsersArrayList implements UsersList{
 
             newUsers[users.length] = newUser;
             users = newUsers;
+            currLength++;
         }
     }
 
     @Override
     public User getUserById(Integer id) {
         for (int i = 0; i < currLength; i++) {
-            if (users[i].getId() == id) {
+            if (users[i].getId().equals(id)) {
                 return users[i];
             }
         }
@@ -43,14 +44,6 @@ public class UsersArrayList implements UsersList{
 
     @Override
     public Integer countUsers() {
-        Integer count = 0;
-
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] != null) {
-                count++;
-            }
-        }
-
-        return count;
+        return currLength;
     }
 }

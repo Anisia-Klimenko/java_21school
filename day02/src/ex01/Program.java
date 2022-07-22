@@ -1,5 +1,3 @@
-package ex01;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -25,7 +23,7 @@ public class Program {
             ArrayList<String> words2 = readFiles(buffer);
             buffer.close();
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter("ex01/dictionary.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("dictionary.txt"));
 
             for (String w : DICTIONARY) {
                 writer.write(w + "\n");

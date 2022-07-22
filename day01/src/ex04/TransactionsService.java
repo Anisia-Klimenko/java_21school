@@ -43,7 +43,7 @@ public class TransactionsService implements TransactionServiceInterface{
         sender.getTransactions().addTransaction(out);
 
         recipient.setBalance(recipient.getBalance() + amount);
-        sender.setBalance((sender.getBalance() - amount));
+        sender.setBalance(sender.getBalance() - amount);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class TransactionsService implements TransactionServiceInterface{
     }
 
     @Override
-    public Transaction[] checkTransactionCorrect() {
+    public Transaction[] checkTransactionsValidity() {
         return unpairedTransactions.transactionToArray();
     }
 }

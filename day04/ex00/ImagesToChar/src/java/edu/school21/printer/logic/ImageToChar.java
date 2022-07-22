@@ -23,16 +23,16 @@ public class ImageToChar {
     public char[][] setCharArray(String file, char white, char black) {
         try {
             BufferedImage buffer = ImageIO.read(new File(file));
-            char[][] array = new char[buffer.getWidth()][buffer.getHeight()];
+            char[][] array = new char[buffer.getHeight()][buffer.getWidth()];
 
             for (int y = 0; y < buffer.getHeight(); y++) {
                 for (int x = 0; x < buffer.getWidth(); x++) {
                     int color = buffer.getRGB(x, y);
 
                     if (color == Color.WHITE.getRGB()) {
-                        array[x][y] = white;
+                        array[y][x] = white;
                     } else {
-                        array[x][y] = black;
+                        array[y][x] = black;
                     }
                 }
             }

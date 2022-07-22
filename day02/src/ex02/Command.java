@@ -1,6 +1,3 @@
-package ex02;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,18 +38,18 @@ public class Command {
     }
 
     public void mv(String src, String dest) {
-        File srcFile = new File(src);
-        File destFile = new File(dest);
+        Path srcPath = Paths.get(getCurrentDir() + "/" + src).normalize();
+        Path destPath = Paths.get(getCurrentDir() + "/" + dest).normalize();
 
         try {
-            if (destFile.isDirectory()) {
-                destFile = new File(dest + "/" + srcFile.getName());
-                Files.move(srcFile.toPath(), destFile.toPath(), REPLACE_EXISTING);
+            if (Files.isDirectory(destPath)) {
+                destPath = Paths.get(destPath + "/" + srcPath.getFileName());
+                Files.move(srcPath, destPath, REPLACE_EXISTING);
             } else {
-                Files.move(srcFile.toPath(), destFile.toPath(), REPLACE_EXISTING);
+                Files.move(srcPath, destPath, REPLACE_EXISTING);
             }
         } catch (IOException e) {
-            System.out.println("No such file " + srcFile.toString());
+            System.out.println("File not found");
         }
     }
 

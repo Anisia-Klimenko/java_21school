@@ -1,5 +1,3 @@
-package ex01;
-
 public class Egg extends Thread implements Runnable{
     private int count;
 

@@ -1,5 +1,3 @@
-package ex00;
-
 import java.io.*;
 import java.util.*;
 
@@ -11,7 +9,7 @@ public class Program {
         Map<String, String> signatures = new HashMap<>();
 
         try {
-            FileInputStream inputStream = new FileInputStream(new File("ex00/signatures.txt"));
+            FileInputStream inputStream = new FileInputStream(new File("signatures.txt"));
 
             int i;
             StringBuilder buffer = new StringBuilder();
@@ -39,8 +37,8 @@ public class Program {
 
         try {
             Scanner scanner = new Scanner(System.in);
-            boolean isProcessed = false;
-            FileOutputStream out = new FileOutputStream(new File("ex00/result.txt"));
+            boolean isProcessed;
+            FileOutputStream out = new FileOutputStream(new File("result.txt"));
 
             System.out.print(" -> ");
 
@@ -52,6 +50,8 @@ public class Program {
                 for (int i = 0; i < 8; i++) {
                     bytes.append(Integer.toHexString(test.read()).toUpperCase()).append(" ");
                 }
+
+                isProcessed = false;
 
                 for (Map.Entry<String, String> elem : signatures.entrySet()) {
                     if (bytes.toString().startsWith(elem.getValue())) {

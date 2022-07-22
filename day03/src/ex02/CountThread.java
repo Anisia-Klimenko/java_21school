@@ -1,5 +1,3 @@
-package ex02;
-
 import java.util.ArrayList;
 
 public class CountThread extends Thread implements Runnable{

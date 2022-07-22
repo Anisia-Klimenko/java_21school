@@ -9,6 +9,14 @@ public class Transaction {
     private String transferCategory;
     private Integer transferAmount;
 
+    public Transaction(UUID id, User recipient, User sender, String transferCategory, Integer transferAmount) {
+        this.id = id;
+        this.recipient = recipient;
+        this.sender = sender;
+        this.transferCategory = transferCategory;
+        this.transferAmount = transferAmount;
+    }
+
     public UUID getId() {
         return id;
     }

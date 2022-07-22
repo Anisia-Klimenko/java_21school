@@ -9,7 +9,7 @@ public class Program {
             System.exit(-1);
         }
 
-        ImageToChar imageToChar = new ImageToChar(args[0].charAt(0), args[1].charAt(0), args[3]);
+        ImageToChar imageToChar = new ImageToChar(args[0].charAt(0), args[1].charAt(0), args[2]);
         char[][] array = imageToChar.getCharArray();
 
         for (char[] line : array) {

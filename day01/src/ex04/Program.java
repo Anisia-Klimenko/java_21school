@@ -12,7 +12,7 @@ public class Program {
         transactionsService.addUser(John);
 
         System.out.println("Number of users: " + transactionsService.getUsersList().countUsers());
-        System.out.println("Balance of user 0: " + transactionsService.getBalance(0));
+        System.out.println("Balance of user id=0: " + transactionsService.getBalance(0));
 
         System.out.println("\nMike: " + Mike.getBalance() + ", John: " + John.getBalance());
 
@@ -30,14 +30,14 @@ public class Program {
         }
 
         transactionsService.removeUserTransaction(Mike.getId(), new UUID(500, 1));
-        System.out.println("\nNew array of transactions of user 0 (" + Mike.getName() + "):");
+        System.out.println("\nRemove 1 transaction, new array of transactions of user 0 (" + Mike.getName() + "):");
 
         for (Transaction tr : transactionsService.getUserTransactions(0)) {
             System.out.println("-> " + tr.getTransferAmount() + " -> " + tr.getId());
         }
 
         System.out.println("\nUnpaired transactions: ");
-        for (Transaction tr : transactionsService.checkTransactionCorrect()) {
+        for (Transaction tr : transactionsService.checkTransactionsValidity()) {
             System.out.println("-> " + tr.getId());
         }
 

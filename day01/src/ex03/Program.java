@@ -5,50 +5,33 @@ import java.util.UUID;
 
 public class Program {
     public static void main(String[] args) {
-        Transaction tr1 = new Transaction();
-        Transaction tr2 = new Transaction();
-        Transaction tr3 = new Transaction();
+        User Mike = new User("Mike", 1000, null);
+        User John = new User("John", 2000, null);
 
-        User Mike = new User();
-        Mike.setName("Mike");
-        Mike.setBalance(1000);
-
-        User John = new User();
-        John.setName("John");
-        John.setBalance(2000);
-
-        tr1.setId(UUID.randomUUID());
-        tr1.setRecipient(Mike);
-        tr1.setSender(John);
-        tr1.setTransferCategory("INCOME");
-        tr1.setTransferAmount(200);
-
-        tr2.setId(UUID.randomUUID());
-        tr2.setRecipient(Mike);
-        tr2.setSender(John);
-        tr2.setTransferCategory("OUTCOME");
-        tr2.setTransferAmount(-500);
-
-        tr3.setId(UUID.randomUUID());
-        tr3.setRecipient(John);
-        tr3.setSender(Mike);
-        tr3.setTransferCategory("OUTCOME");
-        tr3.setTransferAmount(-1500);
+        Transaction tr1 = new Transaction(UUID.randomUUID(), Mike, John, "INCOME", 200);
+        Transaction tr2 = new Transaction(UUID.randomUUID(), John, Mike, "OUTCOME", -500);
+        Transaction tr3 = new Transaction(UUID.randomUUID(), John, Mike, "OUTCOME", -1500);
 
         TransactionsLinkedList trList = new TransactionsLinkedList();
         trList.addTransaction(tr1);
         trList.addTransaction(tr2);
         trList.addTransaction(tr3);
 
-        System.out.println(trList.transactionToArray()[0].getTransferAmount());
-        System.out.println(trList.transactionToArray()[1].getTransferAmount());
-        System.out.println(trList.transactionToArray()[2].getTransferAmount());
+        for (Transaction tr : trList.transactionToArray()) {
+            System.out.printf("%s -> %s, %s, %d, %s\n", tr.getSender().getName(), tr.getRecipient().getName(),
+                    tr.getTransferCategory(), tr.getTransferAmount(), tr.getId());
+        }
 
         UUID id = trList.transactionToArray()[2].getId();
-
+        System.out.println("\nRemove transaction id=" + id);
         trList.removeTransactionById(id);
 
-        System.out.println(trList.transactionToArray()[0].getTransferAmount());
-        System.out.println(trList.transactionToArray()[1].getTransferAmount());
+        for (Transaction tr : trList.transactionToArray()) {
+            System.out.printf("%s -> %s, %s, %d, %s\n", tr.getSender().getName(), tr.getRecipient().getName(),
+                    tr.getTransferCategory(), tr.getTransferAmount(), tr.getId());
+        }
+
+        System.out.println("\nException: ");
+        trList.removeTransactionById(UUID.randomUUID());
     }
 }

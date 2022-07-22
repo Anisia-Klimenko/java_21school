@@ -49,6 +49,8 @@ public class Transaction {
         if ((transferCategory.equals("INCOME") && transferAmount > 0) ||
                 (transferCategory.equals("OUTCOME") && transferAmount < 0)) {
             this.transferAmount = transferAmount;
+        } else {
+            this.transferAmount = 0;
         }
     }
 }

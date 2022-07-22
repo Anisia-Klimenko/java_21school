@@ -7,10 +7,10 @@ public class User {
     private TransactionsList transactions;
 
     public User(String name, Integer balance, TransactionsList transactions) {
+        this.id = UserIdsGenerator.getInstance().generateId();
         this.name = name;
         this.balance = balance;
         this.transactions = new TransactionsLinkedList();
-        this.id = UserIdsGenerator.getInstance().generateId();
     }
 
     public Integer getId() {

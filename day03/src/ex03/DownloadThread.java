@@ -1,5 +1,3 @@
-package ex03;
-
 import javax.sound.sampled.Port;
 import java.io.File;
 import java.io.IOException;

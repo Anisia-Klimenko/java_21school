@@ -22,6 +22,7 @@ public class UsersArrayList implements UsersList {
 
             newUsers[users.length] = newUser;
             users = newUsers;
+            currLength++;
         }
     }
 
@@ -47,14 +48,6 @@ public class UsersArrayList implements UsersList {
 
     @Override
     public Integer countUsers() {
-        Integer count = 0;
-
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] != null) {
-                count++;
-            }
-        }
-
-        return count;
+        return currLength;
     }
 }
