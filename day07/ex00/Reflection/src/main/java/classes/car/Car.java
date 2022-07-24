@@ -1,4 +1,4 @@
-package classes;
+package classes.car;
 
 public class Car {
     private String color;

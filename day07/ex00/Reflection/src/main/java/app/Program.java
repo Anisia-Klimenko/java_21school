@@ -6,15 +6,11 @@ public class Program {
 
         reflection.showClasses();
         System.out.println("---------------------");
-
         reflection.showClassInfo();
-
         System.out.println("---------------------");
         reflection.createObject();
-
         System.out.println("---------------------");
         reflection.changeField();
-
         System.out.println("---------------------");
         reflection.callMethod();
     }

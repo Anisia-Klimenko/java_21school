@@ -14,6 +14,7 @@ public class ReflectionClass {
     private Class currentClass;
     private Object object;
     private Scanner scanner = new Scanner(System.in);
+    Set<Class> allClasses;
 
     public ReflectionClass() {
         this.reflections = new Reflections("classes", new SubTypesScanner(false));
@@ -23,7 +24,8 @@ public class ReflectionClass {
 
     public void showClasses() {
         System.out.println("Classes:");
-        Set<Class> allClasses = new HashSet<>(reflections.getSubTypesOf(Object.class));
+
+        allClasses = new HashSet<>(reflections.getSubTypesOf(Object.class));
 
         for (Class c : allClasses) {
             System.out.println("\t-\t" + c.getSimpleName());
@@ -32,22 +34,27 @@ public class ReflectionClass {
 
     public void showClassInfo() {
         System.out.print("Enter class name:\n -> ");
+
         String input = scanner.nextLine();
-        try {
-            currentClass = Class.forName("classes." + input);
-        } catch (ClassNotFoundException e) {
+        currentClass = allClasses.stream().filter(c -> c.getSimpleName().equals(input)).findFirst().orElse(null);
+
+        if (currentClass == null) {
             System.err.println("Class " + input + " not found");
             System.exit(1);
         }
 
         System.out.println("---------------------\nfields:");
+
         Field[] fields = currentClass.getDeclaredFields();
+
         for (Field field : fields) {
             System.out.println("\t" + field.getType().getSimpleName() + " " + field.getName());
         }
 
         System.out.println("methods:");
+
         Method[] methods = currentClass.getDeclaredMethods();
+
         for (Method method : methods) {
             String output = Arrays.toString(method.getParameterTypes());
             System.out.println("\t" + method.getReturnType().getSimpleName() + " " + method.getName()
@@ -61,16 +68,21 @@ public class ReflectionClass {
         for (Constructor c : currentClass.getConstructors()) {
             if (c.getParameterCount() == currentClass.getDeclaredFields().length) {
                 Field[] fields = currentClass.getDeclaredFields();
+
                 try {
                     object = currentClass.newInstance();
                 } catch (InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
+
                 for (Field f: fields) {
                     System.out.print(f.getName() + ":\n -> ");
+
                     f.setAccessible(true);
+
                     try {
                         Object value = getValue(f.getType().getSimpleName(), scanner.nextLine());
+
                         if (value != null) {
                             f.set(object, value);
                         }
@@ -81,6 +93,7 @@ public class ReflectionClass {
                         System.exit(1);
                     }
                 }
+
                 if (object != null) {
                     System.out.println("Object created: " + object.toString());
                 }
@@ -116,6 +129,7 @@ public class ReflectionClass {
 
     public void changeField() {
         System.out.print("Enter name of the field for changing:\n -> ");
+
         Field[] fields = currentClass.getDeclaredFields();
         String line = scanner.nextLine();
         Field field = Arrays.stream(fields).filter(f ->
@@ -127,7 +141,9 @@ public class ReflectionClass {
         }
 
         System.out.print("Enter " + field.getType().getSimpleName() + " value:\n -> ");
+
         Object value = null;
+
         try {
             value = getValue(field.getType().getSimpleName(), scanner.nextLine());
         } catch (NumberFormatException e) {
@@ -151,8 +167,8 @@ public class ReflectionClass {
 
     public void callMethod() {
         System.out.print("Enter name of the method for call:\n -> ");
-        String line = scanner.nextLine();
 
+        String line = scanner.nextLine();
         Method[] methods = currentClass.getDeclaredMethods();
         Method method = Arrays.stream(methods).filter(m ->
                 m.getName().equals(line.split("\\(")[0])).findFirst().orElse(null);
