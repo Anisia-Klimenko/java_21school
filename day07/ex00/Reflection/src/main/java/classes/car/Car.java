@@ -1,4 +1,4 @@
-package classes;
+package classes.car;
 
 public class Car {
     private String color;
@@ -20,14 +20,15 @@ public class Car {
 
     public void refuel(int volume, char c) {
         this.fuelLeft = Math.min(this.fuelLeft + volume, 50);
+        System.out.println(this.fuelLeft);
     }
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "Car[" +
                 "color='" + color + '\'' +
                 ", maxSpeed=" + maxSpeed +
                 ", fuelLeft=" + fuelLeft +
-                '}';
+                ']';
     }
 }

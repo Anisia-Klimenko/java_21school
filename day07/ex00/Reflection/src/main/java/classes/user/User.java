@@ -1,4 +1,4 @@
-package classes;
+package classes.user;
 
 public class User {
     private String firstName;
@@ -24,10 +24,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User[" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", height=" + height +
-                '}';
+                ']';
     }
 }
