@@ -58,7 +58,9 @@ public class Program {
             norm2 += array2[i] * array2[i];
         }
 
-        denominator = Math.sqrt(norm1) * Math.sqrt(norm2);
+        if (norm1 != 0 && norm2 != 0) {
+            denominator = Math.sqrt(norm1) * Math.sqrt(norm2);
+        }
 
         return numerator / denominator;
     }
