@@ -2,7 +2,6 @@ package school21.spring.service.main;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import school21.spring.service.models.User;
 import school21.spring.service.repositories.UsersRepositoryJdbcImpl;
 import school21.spring.service.repositories.UsersRepositoryJdbcTemplateImpl;
 
