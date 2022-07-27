@@ -20,7 +20,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         Optional<User> optionalUser;
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from user where id=" + id;
+            String query = "select * from repo.user where id=" + id;
             Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(query);
@@ -36,10 +36,8 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
             return optionalUser;
         } catch (SQLException e) {
-            e.printStackTrace();
+            return Optional.empty();
         }
-
-        return Optional.empty();
     }
 
     @Override
@@ -47,7 +45,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         List<User> list = new ArrayList<>();
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from user";
+            String query = "select * from repo.user";
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(query);
 
@@ -67,7 +65,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     @Override
     public void save(User entity) {
-        String query = "INSERT INTO user (email) VALUES (?);";
+        String query = "insert into repo.user (email) values (?)";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -85,7 +83,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     @Override
     public void update(User entity) {
-        String query = "UPDATE user SET email=? WHERE id=?";
+        String query = "update repo.user set email=? where id=?";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query);
@@ -101,7 +99,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     @Override
     public void delete(Long id) {
-        String query = "DELETE FROM user WHERE id=?";
+        String query = "delete from repo.user where id=?";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query);
@@ -118,7 +116,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         Optional<User> optionalUser;
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from user where email=" + email;
+            String query = "select * from repo.user where email=" + email;
             Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(query);
@@ -134,9 +132,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
             return optionalUser;
         } catch (SQLException e) {
-            e.printStackTrace();
+            return Optional.empty();
         }
-
-        return Optional.empty();
     }
 }
