@@ -1,18 +1,20 @@
 package school21.spring.service.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import school21.spring.service.models.User;
 
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
+@Component("repoJdbcTemplate")
 public class UsersRepositoryJdbcTemplateImpl implements UsersRepository{
-    private DataSource ds;
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public UsersRepositoryJdbcTemplateImpl(DataSource ds) {
-        this.ds = ds;
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
@@ -30,8 +32,8 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository{
     }
 
     @Override
-    public void save(User entity) {
-        jdbcTemplate.update("insert into repo.user (email) values (?)", entity.getEmail());
+    public void save(User entity, String password) {
+        jdbcTemplate.update("insert into repo.user (email, password) values (?, ?)", entity.getEmail(), password);
     }
 
     @Override

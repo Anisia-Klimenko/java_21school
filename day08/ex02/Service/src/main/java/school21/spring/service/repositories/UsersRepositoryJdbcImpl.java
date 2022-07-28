@@ -1,5 +1,7 @@
 package school21.spring.service.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import school21.spring.service.models.User;
 
 import javax.sql.DataSource;
@@ -8,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component("repoJdbc")
 public class UsersRepositoryJdbcImpl implements UsersRepository {
     private DataSource ds;
 
+    @Autowired
     public UsersRepositoryJdbcImpl(DataSource ds) {
         this.ds = ds;
     }
@@ -64,13 +68,14 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     }
 
     @Override
-    public void save(User entity) {
-        String query = "insert into repo.user (email) values (?)";
+    public void save(User entity, String password) {
+        String query = "insert into repo.user (email, password) values (?, ?)";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             statement.setString(1, entity.getEmail());
+            statement.setString(2, password);
             statement.execute();
 
             ResultSet id = statement.getGeneratedKeys();
