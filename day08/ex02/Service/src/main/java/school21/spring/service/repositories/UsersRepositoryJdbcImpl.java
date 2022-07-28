@@ -24,7 +24,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         Optional<User> optionalUser;
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from repo.user where id=" + id;
+            String query = "select * from userTable where id=" + id;
             Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(query);
@@ -49,7 +49,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         List<User> list = new ArrayList<>();
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from repo.user";
+            String query = "select * from userTable";
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(query);
 
@@ -69,7 +69,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     @Override
     public void save(User entity, String password) {
-        String query = "insert into repo.user (email, password) values (?, ?)";
+        String query = "insert into userTable (email, password) values (?, ?)";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -88,7 +88,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     @Override
     public void update(User entity) {
-        String query = "update repo.user set email=? where id=?";
+        String query = "update userTable set email=? where id=?";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query);
@@ -104,7 +104,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
 
     @Override
     public void delete(Long id) {
-        String query = "delete from repo.user where id=?";
+        String query = "delete from userTable where id=?";
 
         try (Connection conn = ds.getConnection();) {
             PreparedStatement statement = conn.prepareStatement(query);
@@ -121,7 +121,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         Optional<User> optionalUser;
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from repo.user where email=" + email;
+            String query = "select * from userTable where email=" + email;
             Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(query);
