@@ -11,7 +11,7 @@ public class Program {
     public static final int MAX_TOTAL_CLASSES_PER_WEEK = 10;
     public static final int MAX_NUMBER_OF_STUDENTS = 10;
     public static final int MAX_NAME_LENGTH = 10;
-    public static final String[] DAYS = {" MO", " TU", " WE", " TH", " FR", " SA", " SU"};
+    public static final String[] DAYS = { " MO", " TU", " WE", " TH", " FR", " SA", " SU" };
 
     public static String[] addNewString(String[] arrayOfStrings, String newString) {
         String[] newArrayOfStrings = new String[arrayOfStrings.length + 1];
