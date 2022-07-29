@@ -37,6 +37,6 @@ public class SocketsApplicationConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(15, new SecureRandom());
+        return new BCryptPasswordEncoder(4, new SecureRandom());
     }
 }

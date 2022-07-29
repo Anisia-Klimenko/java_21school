@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class User {
     private Long id;
-    private String email;
+    private String userName;
     private String password;
 
-    public User(Long id, String email, String password) {
+    public User(Long id, String userName, String password) {
         this.id = id;
-        this.email = email;
+        this.userName = userName;
         this.password = password;
     }
 
@@ -21,12 +21,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -42,19 +42,19 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id.equals(user.id) && email.equals(user.email) && password.equals(user.password);
+        return id.equals(user.id) && userName.equals(user.userName) && password.equals(user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password);
+        return Objects.hash(id, userName, password);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
