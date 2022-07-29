@@ -116,7 +116,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         Optional<User> optionalUser;
 
         try (Connection connection = ds.getConnection();) {
-            String query = "select * from repo.user where email=" + email;
+            String query = "select * from repo.user where email='" + email + "'";
             Statement statement = connection.createStatement();
 
             ResultSet result = statement.executeQuery(query);

@@ -9,17 +9,13 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context.xml");
 
-        System.out.println("--- JDBC ---");
+        System.out.println("--- JDBC FIND ALL---");
         UsersRepositoryJdbcImpl jdbc = applicationContext.getBean("jdbc", UsersRepositoryJdbcImpl.class);
-        System.out.println("FIND BY ID\t\t" + jdbc.findById(1L));
-        System.out.println("FIND ALL\t\t" + jdbc.findAll().toString());
-        System.out.println("FIND BY EMAIL\t" + jdbc.findByEmail("sam@mail.com"));
+        System.out.println(jdbc.findAll().toString());
         System.out.println(" ");
 
-        System.out.println("--- JDBC Template ---");
+        System.out.println("--- JDBC Template FIND ALL---");
         UsersRepositoryJdbcTemplateImpl jdbcTemplate = applicationContext.getBean("jdbcTemplate", UsersRepositoryJdbcTemplateImpl.class);
-        System.out.println("FIND BY ID\t\t" + jdbcTemplate.findById(1L));
-        System.out.println("FIND ALL\t\t" + jdbcTemplate.findAll().toString());
-        System.out.println("FIND BY EMAIL\t" + jdbcTemplate.findByEmail("sam@mail.com"));
+        System.out.println(jdbcTemplate.findAll().toString());
     }
 }

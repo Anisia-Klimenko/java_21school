@@ -59,8 +59,8 @@ public class Program {
         }
 
         if (norm1 != 0 && norm2 != 0) {
-            denominator = Math.sqrt(norm1) * Math.sqrt(norm2);
-        }
+		denominator = Math.sqrt(norm1) * Math.sqrt(norm2);
+	}
 
         return numerator / denominator;
     }
