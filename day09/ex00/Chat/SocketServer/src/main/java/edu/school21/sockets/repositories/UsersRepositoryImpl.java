@@ -15,7 +15,7 @@ public class UsersRepositoryImpl implements UsersRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UsersRepositoryImpl(DataSource ds) {
+    public UsersRepositoryImpl(@Qualifier("hikariDataSource") DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 
