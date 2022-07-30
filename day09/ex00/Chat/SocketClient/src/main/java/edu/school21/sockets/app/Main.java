@@ -40,12 +40,7 @@ public class Main {
 
             if (reader.readLine().startsWith("Successful!")) {
                 System.out.println("Successful!");
-            } else {
-                System.err.println("Failure!");
             }
-
-            writer.write("ok");
-            writer.flush();
 
             reader.close();
             writer.close();

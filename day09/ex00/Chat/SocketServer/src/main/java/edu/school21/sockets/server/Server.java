@@ -48,11 +48,9 @@ public class Server {
 
             System.out.println(userName + " " + password);
 
-            if (usersService.getPasswordEncoder().matches(password, usersService.signUp(userName, password))) {
-                saveSend("Successful!\n", writer, reader);
-            } else {
-                saveSend("Failure!", writer, reader);
-            }
+            usersService.signUp(userName, password);
+            writer.write("Successful!\n");
+            writer.flush();
 
             reader.close();
             writer.close();
