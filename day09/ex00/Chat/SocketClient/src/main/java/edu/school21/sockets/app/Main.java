@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 @Parameters(separators = "=")
 public class Main {
-    @Parameter(names = {"--port", "-p"})
+    @Parameter(names = {"--server-port", "-p"})
     int port;
     public static void main(String[] args) {
         Main main = new Main();
@@ -37,6 +37,15 @@ public class Main {
             }
 
             showSend(input, writer, scanner);
+
+            if (reader.readLine().startsWith("Successful!")) {
+                System.out.println("Successful!");
+            } else {
+                System.err.println("Failure!");
+            }
+
+            writer.write("ok");
+            writer.flush();
 
             reader.close();
             writer.close();

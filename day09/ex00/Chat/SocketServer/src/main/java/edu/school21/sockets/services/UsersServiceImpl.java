@@ -9,7 +9,7 @@ import edu.school21.sockets.repositories.UsersRepository;
 
 import java.util.Random;
 
-@Component
+@Component("usersServiceImpl")
 public class UsersServiceImpl implements UsersService{
     private UsersRepository repository;
     private PasswordEncoder passwordEncoder;
@@ -19,6 +19,10 @@ public class UsersServiceImpl implements UsersService{
                             @Qualifier("passwordEncoder") PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
     }
 
     @Override

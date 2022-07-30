@@ -7,9 +7,3 @@ create table repo.userTable (
    userName       text ,
    password    text
 );
-
-insert into repo.userTable(userName, password) values ('mike@mail.com', '12345mikeqwerty');
-insert into repo.userTable(userName, password) values ('john@mail.com', '12345johnqwerty');
-insert into repo.userTable(userName, password) values ('sam@mail.com', '12345samqwerty');
-insert into repo.userTable(userName, password) values ('karen@mail.com', '12345karenqwerty');
-insert into repo.userTable(userName, password) values ('luke@mail.com', '12345lukeqwerty');

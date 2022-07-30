@@ -27,7 +27,7 @@ public class Server {
             String userName = "";
             String password = "";
             String signUp = "";
-            UsersService usersService = context.getBean("usersServiceImpl", UsersServiceImpl.class);
+            UsersServiceImpl usersService = context.getBean("usersServiceImpl", UsersServiceImpl.class);
             Socket clientSocket = serverSocket.accept();
 
 
@@ -48,7 +48,11 @@ public class Server {
 
             System.out.println(userName + " " + password);
 
-            System.out.println(usersService.signUp(userName, password));
+            if (usersService.getPasswordEncoder().matches(password, usersService.signUp(userName, password))) {
+                saveSend("Successful!\n", writer, reader);
+            } else {
+                saveSend("Failure!", writer, reader);
+            }
 
             reader.close();
             writer.close();
