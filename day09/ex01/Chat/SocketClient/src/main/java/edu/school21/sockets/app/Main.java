@@ -31,16 +31,34 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             String response = reader.readLine();
 
-            while (!response.toLowerCase().equals("exit")) {
-                showSend(response, writer, scanner);
-                response = reader.readLine();
+            while (!response.equalsIgnoreCase("exit")) {
+                switch (response.toLowerCase()) {
+                    case "signin":
+                        break;
+                    case "invalid password!":
+                        showPost(response + "\nSign in again!", writer, scanner);
+                        response = reader.readLine();
+                        break;
+                    case "invalid username!":
+                        System.err.println(response);
+                        response = "exit";
+                        writer.write("exit\n");
+                        writer.flush();
+                        break;
+                    case "you have left the chat.":
+                        System.out.println(response);
+                        response = "exit";
+                        break;
+                    case "message":
+                        listenForMessage(clientSocket, reader, writer);
+                        response = sendMessage(scanner, clientSocket, writer, reader);
+                        break;
+                    default:
+                        showPost(response, writer, scanner);
+                        response = reader.readLine();
+                        break;
+                }
             }
-//
-//            showSend(input, writer, scanner);
-//
-//            if (reader.readLine().startsWith("Successful!")) {
-//                System.out.println("Successful!");
-//            }
 
             reader.close();
             writer.close();
@@ -52,11 +70,67 @@ public class Main {
         }
     }
 
-    private void showSend(String message, OutputStreamWriter writer, Scanner scanner) throws IOException {
+    public String manageMessages(Scanner scanner, Socket socket, OutputStreamWriter writer, BufferedReader reader) {
+        listenForMessage(socket, reader, writer);
+        sendMessage(scanner, socket, writer, reader);
+        return "exit";
+    }
+
+    private void showPost(String message, OutputStreamWriter writer, Scanner scanner) throws IOException {
         System.out.println(message);
         System.out.print("> ");
 
         writer.write(scanner.nextLine() + "\n");
         writer.flush();
+    }
+
+    public String sendMessage(Scanner scanner, Socket socket, OutputStreamWriter writer, BufferedReader reader) {
+        String message = "";
+
+        try {
+            while (socket.isConnected() && !message.equalsIgnoreCase("exit")) {
+                message = scanner.nextLine();
+                writer.write(message);
+                writer.flush();
+            }
+        } catch (IOException e) {
+            closeConnections(socket, writer, reader);
+            return "exit";
+        }
+        return "exit";
+    }
+
+    public void listenForMessage(Socket socket, BufferedReader reader, OutputStreamWriter writer) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String chatMessage;
+
+                while (socket.isConnected()) {
+                    try {
+                        chatMessage = reader.readLine();
+                        System.out.println(chatMessage);
+                    } catch (IOException e) {
+                         closeConnections(socket, writer, reader);
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public void closeConnections (Socket socket, OutputStreamWriter writer, BufferedReader reader) {
+        try {
+            if (socket != null) {
+                socket.close();
+            }
+            if (writer != null) {
+                writer.close();
+            }
+            if (reader != null) {
+                reader.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
