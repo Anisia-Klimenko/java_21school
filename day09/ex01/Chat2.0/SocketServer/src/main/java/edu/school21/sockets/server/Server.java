@@ -1,6 +1,7 @@
 package edu.school21.sockets.server;
 
 import javax.imageio.IIOException;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -21,12 +22,12 @@ public class Server {
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
-        } catch (IIOException e) {
+        } catch (IOException e) {
             closeServerSocket(serverSocket);
         }
     }
 
     public void closeServerSocket(ServerSocket socket) {
-        
+
     }
 }
