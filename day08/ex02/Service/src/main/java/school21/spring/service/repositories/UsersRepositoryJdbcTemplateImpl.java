@@ -1,6 +1,7 @@
 package school21.spring.service.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import school21.spring.service.models.User;
@@ -14,7 +15,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UsersRepositoryJdbcTemplateImpl(DataSource ds) {
+    public UsersRepositoryJdbcTemplateImpl(@Qualifier("hikariDataSource") DataSource ds) {
         this.jdbcTemplate = new JdbcTemplate(ds);
     }
 

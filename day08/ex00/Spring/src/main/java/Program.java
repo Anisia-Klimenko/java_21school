@@ -6,7 +6,7 @@ public class Program {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context.xml");
         PrinterWithPrefixImpl printer = applicationContext.getBean(PrinterWithPrefixImpl.class);
-//        printer.setPrefix("Prefix");
+        printer.setPrefix("Prefix");
         printer.print("Hello!");
     }
 }

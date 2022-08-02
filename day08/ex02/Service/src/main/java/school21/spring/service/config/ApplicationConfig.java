@@ -32,6 +32,7 @@ public class ApplicationConfig {
         return ds;
     }
 
+    @Bean
     public DriverManagerDataSource driverManagerDataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setUrl(url);
