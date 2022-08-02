@@ -67,9 +67,4 @@ public class ProductsRepositoryJdbcImplTest {
         repository.delete(1L);
         Assertions.assertThrowsExactly(RuntimeException.class, () -> repository.findById(1L));
     }
-
-//    @AfterEach
-//    void close() {
-//        ds.shutdown();
-//    }
 }
